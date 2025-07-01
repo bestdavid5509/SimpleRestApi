@@ -1,19 +1,22 @@
-// See https://aka.ms/new-console-template for more information
-
-//Console.WriteLine("Hello, World!");
-
-
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-class Program {
-    static void Main(string[] args) {
-        Console.WriteLine("Enter first number:");
-        int num1 = int.Parse(Console.ReadLine());
+namespace SimpleRestApi {
+    public class Program {
+        public static void Main(string[] args) {
+            CreateHostBuilder(args).Build().Run();
+        }
 
-        Console.WriteLine("Enter second number:");
-        int num2 = int.Parse(Console.ReadLine());
-
-        int sum = num1 + num2;
-        Console.WriteLine($"Sum: {sum}");
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
